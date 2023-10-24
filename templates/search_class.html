@@ -1,0 +1,32 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  课程查找
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-8 mt-2">
+      <p>课程数量:{{ search_classes|length }}</p>
+      <ul class="list-group">
+        {% for search_class in search_classes %}
+          <li class="list-group-item">课程代号:{{ search_class.class_name }}
+            学生数量:{{ search_class.class_student_number }}
+            课程类型:{{ search_class.class_type }}
+            创建时间:{{ search_class.create_time }}
+
+          </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+    <div class="col"></div>
+  </div>
+
+
+{% endblock %}

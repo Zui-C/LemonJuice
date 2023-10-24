@@ -1,0 +1,43 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  重新开始
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="main-panel">
+  <div class="content-wrapper pb-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="card" style="position: center;margin:auto;">
+          <div class="card-body">
+            <div  class="container-fluid mt-2" >
+              <table  class="table table-borderless">
+                <tr>
+                  <td style="width: 100%;">警告：库存过低</td>
+                  <td style="width: 100%;">是否继续?</td>
+                </tr>
+                <tr>
+                  <td style="width: 100%;">
+                    <a class="btn btn-block btn-sm badage badge-inverse-info" href="{{ url_for('play.open') }}" role="button">继续</a>
+                  </td>
+                  <td style="width: 100%;">
+                    <a class="btn btn-block btn-sm badage badge-inverse-primary" href="{{ url_for('play.start') }}" role="button">返回</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,309 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  采购
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<!--start four things-->
+<div class="row">
+      <div class="col-xl-4 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+        <div class="card bg-danger">
+          <div class="card-body px-3 py-4">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="color-card">
+                <p class="mb-0 color-card-head" style="color: #f3f3f3;" >现金</p>
+                <h2 class="text-white">￥{{ g.resource[4] }}</h2>
+              </div>              <div class="color-card">
+                <p class="mb-0 color-card-head" style="color: #f3f3f3;" >总资产</p>
+                <h2 class="text-white">￥{{ g.total_value }}</h2>
+              </div>
+              <i class="card-icon-indicator mdi mdi-coin bg-inverse-icon-danger"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+        <div class="card bg-warning">
+          <div class="card-body px-3 py-4">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="color-card">
+                <p class="mb-0 color-card-head" style="color: #f3f3f3;" >柠檬</p>
+                <h2 class="text-white"> {{ g.resource[0] }}
+                </h2>
+              </div>
+              <i class="card-icon-indicator"><span><img width="100%" height="100%" src="{{ url_for('static',filename = 'assets/img/lemon.svg') }}"
+                             alt="lemon"></span></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+        <div class="card bg-success">
+          <div class="card-body px-3 py-4">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="color-card">
+                <p class="mb-0 color-card-head" style="color: #f3f3f3;" >方糖</p>
+                <h2 class="text-white"> {{ g.resource[1] }}
+                </h2>
+              </div>
+              <i class="card-icon-indicator mdi mdi-crop-square bg-inverse-icon-success"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
+        <div class="card bg-info">
+          <div class="card-body px-3 py-4">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="color-card">
+                <p class="mb-0 color-card-head" style="color: #f3f3f3;" >冰块</p>
+                <h2 class="text-white"> {{ g.resource[2] }}
+                </h2>
+              </div>
+              <i class="card-icon-indicator mdi mdi-cube-outline bg-inverse-icon-info"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
+        <div class="card bg-primary">
+          <div class="card-body px-3 py-4">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="color-card">
+                <p class="mb-0 color-card-head" style="color: #f3f3f3;" >注塑杯</p>
+                <h2 class="text-white">{{ g.resource[3] }}</h2>
+              </div>
+              <i class="card-icon-indicator mdi mdi-cup bg-inverse-icon-primary"></i>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+<!--end four things-->
+<div class="row">
+  <div class="col-lg-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title" style="font-size: larger;">
+          <b>柠檬</b>
+        </h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="font-size: large;"><b> </b></th>
+                <th style="font-size: large;"><b>数量</b></th>
+                <th style="font-size: large;"><b>价格</b></th>
+                <th style="font-size: large;"><b>参考单价</b></th>
+                <th style="font-size: large;"><b> </b></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>方案一</th>
+                <td>1000</td>
+                <td>640</td>
+                <td>0.64</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-warning" href="/purchase/l/1"
+                     role="button">购买</a>
+                </td>
+              </tr>
+              <tr>
+                <th>方案二</th>
+                <td>5000</td>
+                <td>3000</td>
+                <td>0.60</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-warning" href="/purchase/l/2"
+                     role="button">购买</a>
+                </td>
+              </tr>
+              <tr>
+                <th>方案三</th>
+                <td>25000</td>
+                <td>14330</td>
+                <td>0.57</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-warning" href="/purchase/l/3"
+                     role="button">购买</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title" style="font-size: larger;">
+          <b>方糖</b>
+        </h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="font-size: large;"><b> </b></th>
+                <th style="font-size: large;"><b>数量</b></th>
+                <th style="font-size: large;"><b>价格</b></th>
+                <th style="font-size: large;"><b>参考单价</b></th>
+                <th style="font-size: large;"><b> </b></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>方案一</th>
+                <td>1000</td>
+                <td>250</td>
+                <td>0.250</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-success" href="/purchase/s/1"
+                     role="button">购买</a>
+                </td>
+              </tr>
+              <tr>
+                <th>方案二</th>
+                <td>5000</td>
+                <td>1000</td>
+                <td>0.200</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-success" href="/purchase/s/2"
+                     role="button">购买</a>
+                </td>
+              </tr>
+              <tr>
+                <th>方案三</th>
+                <td>25000</td>
+                <td>4150</td>
+                <td>0.167</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-success" href="/purchase/s/3"
+                     role="button">购买</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title" style="font-size: larger;">
+          <b>冰块</b>
+        </h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="font-size: large;"><b> </b></th>
+                <th style="font-size: large;"><b>数量</b></th>
+                <th style="font-size: large;"><b>价格</b></th>
+                <th style="font-size: large;"><b>参考单价</b></th>
+                <th style="font-size: large;"><b> </b></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>方案一</th>
+                <td>5000</td>
+                <td>50</td>
+                <td>0.0100</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-info" href="/purchase/i/1"
+                     role="button">购买</a>
+                </td>
+              </tr>
+              <tr>
+                <th>方案二</th>
+                <td>25000</td>
+                <td>220</td>
+                <td>0.0088</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-info" href="/purchase/i/2"
+                     role="button">购买</a>
+                </td>
+              </tr>
+              <tr>
+                <th>方案三</th>
+                <td>125000</td>
+                <td>1000</td>
+                <td>0.0080</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-info" href="/purchase/i/3"
+                     role="button">购买</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title" style="font-size: larger;">
+          <b>注塑杯</b>
+        </h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="font-size: large;"><b> </b></th>
+                <th style="font-size: large;"><b>数量</b></th>
+                <th style="font-size: large;"><b>价格</b></th>
+                <th style="font-size: large;"><b>参考单价</b></th>
+                <th style="font-size: large;"><b> </b></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>方案一</th>
+                <td>1000</td>
+                <td>500</td>
+                <td>0.50</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-primary" href="/purchase/c/1"
+                     role="button">购买</a>
+                </td>
+              </tr>
+              <tr>
+                <th>方案二</th>
+                <td>5000</td>
+                <td>2250</td>
+                <td>0.45</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-primary" href="/purchase/c/2"
+                     role="button">购买</a>
+                </td>
+              </tr>
+              <tr>
+                <th>方案三</th>
+                <td>25000</td>
+                <td>10000</td>
+                <td>0.40</td>
+                <td>
+                  <a class="btn btn-outline-dark btn-block badge-primary" href="/purchase/c/3"
+                     role="button">购买</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

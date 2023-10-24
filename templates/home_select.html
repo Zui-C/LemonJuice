@@ -1,0 +1,169 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  店铺
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename = 'css/report.css') }}">
+<script src="{{ url_for('static',filename = 'jquery/jquery-3.6.0.min.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+  <style>
+      tr {
+          margin: 0px;
+      }
+
+      td, th {
+          text-align: center;
+      }
+
+  </style>
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>你的店面</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                 <td>店面类型</td>
+                <td>{{data[0]}}</td>
+              </tr>
+              <tr>
+                <td>设备折旧年限/（装修）待摊费用年限</td>
+                <td>1年=48周/1年=48周</td>
+              </tr>
+              <tr>
+                <td>设备残值</td>
+                <td>￥{{data[1]}}</td>
+              </tr>
+              <tr>
+                <td>（装修）待摊费用</td>
+                <td>￥{{data[2]}}</td>
+              </tr>
+            </table>
+          </div>
+                                      <a class="btn btn-block mt-4 badge badge-inverse-danger" href="{{ url_for('play.start') }}" role="button"
+           style="font-size: large;">开始决策</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>流动餐车</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                 <td>租金</td>
+                <td>￥500/月</td>
+                <td>管理费</td>
+              </tr>
+              <tr>
+                <td>员工费用</td>
+                <td>￥0/月</td>
+                <td>你自己</td>
+              </tr>
+              <tr>
+                 <td>设备费用</td>
+                <td>￥10000</td>
+                <td>流动餐车+榨汁机</td>
+
+              </tr>
+              <tr>
+                <td>装修费用</td>
+                <td>￥0</td>
+                <td>无</td>
+              </tr>
+            </table>
+          </div>
+                            <a class="btn btn-block mt-4 badge badge-inverse-warning" href="/home/1" role="button"
+           style="font-size: large;">选择</a>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  <div class="row">
+      <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>大众连锁店</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                 <td>租金</td>
+                <td>￥1800/月</td>
+                <td>18平普通地段</td>
+              </tr>
+              <tr>
+                <td>员工工资</td>
+                <td>￥2000/月</td>
+                <td>你自己+兼职1名</td>
+              </tr>
+              <tr>
+                 <td>设备费用</td>
+                <td>￥15000</td>
+                <td>操作台+收银机等</td>
+              </tr>
+              <tr>
+                <td>装修费用</td>
+                <td>￥18000</td>
+                <td>18平简单装修</td>
+              </tr>
+            </table>
+          </div>
+                            <a class="btn btn-block mt-4 badge badge-inverse-success" href="/home/2" role="button"
+           style="font-size: large;">选择</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>商场连锁店</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                 <td>租金</td>
+                <td>￥3500/月</td>
+                <td>商场商铺</td>
+              </tr>
+              <tr>
+                <td>员工费用</td>
+                <td>￥4500/月</td>
+                <td>你自己+全职1名</td>
+              </tr>
+              <tr>
+                 <td>设备费用</td>
+                <td>￥22000</td>
+                <td>操作台+收银机等</td>
+              </tr>
+              <tr>
+                <td>装修费用</td>
+                <td>￥38000</td>
+                <td>商铺精装</td>
+              </tr>
+            </table>
+          </div>
+                  <a class="btn btn-block mt-4 badge badge-inverse-info" href="/home/3" role="button"
+           style="font-size: large;">选择</a>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

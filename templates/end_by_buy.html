@@ -1,0 +1,68 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  创业记录
+{% endblock %}
+{% block head %}
+{% endblock %} 
+
+{% block body %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2 grid-margin stretch-card"></div>
+        <div class="col-lg-8 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-header" style="background-color: rgb(164, 106, 218);">
+  <b class="text-white">公司清算</b>
+</div>
+
+        <div class="card-body">
+        因被收购而进行清算
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+              <tr>
+                <td>清算时间</td>
+                <td>
+                  <label>第{{g.day_number}}周</label>
+                </td>
+              </tr>
+              <tr>
+                <td>资产</td>
+                <td>
+                  <label>¥{{ "%.1f" | format(g.total_value) }}</label>
+                </td>
+              </tr>
+              <tr>
+                <td>口碑溢价/折价</td>
+                <td>
+                  <label>¥{{ "%.1f" | format(g.popularity_value) }}</label>
+                </td>
+              </tr>
+              <tr>
+                <td>交易对价</td>
+                <td>
+                  <label>{{ "%.1f" | format(g.price) }}</label>
+                </td>
+              </tr>
+                                          <tr>
+                <td>ROE</td>
+                <td>
+                  <label>{{ "%.2f" | format(g.roe) }}%</label>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+
+          </div>
+        <a class="btn btn-block mt-3 badge badge-inverse-danger" href="{{ url_for('user.user_details') }}" role="button"
+           style="font-size: large;">确定</a>
+        </div>
+            </div>
+        </div>
+        <div class="col-lg-2 grid-margin stretch-card"></div>
+    </div>
+  </div>
+
+{% endblock %}

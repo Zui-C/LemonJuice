@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>新基页</title>
+        <link rel="shortcut icon" href="../static/lemon.ico" />
+
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'assets/venders/mdi/css/materialdesignicons.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'assets/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'css/report.css') }}">
+      <script src="{{ url_for('static',filename = 'jquery/jquery-3.6.0.min.js') }}"></script>
+
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="container-scroller">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="text-center sidebar-brand-wrapper d-flex flex-fill  align-items-center">
+          <a class="navbar-brand brand-logo" style="padding-left: 36px;padding-top: 20px;" href="{{ url_for('egate') }}">
+            <t style="color:#141212; text-align: center; font-style: normal;"> <span><img width="35px" src="{{ url_for('static',filename = 'assets/img/lemon.svg') }}"  alt="lemon"></span>
+            商业模拟</t>
+          </a>
+          <a class="sidebar-brand brand-logo-mini justify-content-center" href="{{ url_for('egate') }}"><span><img src="{{ url_for('static',filename = 'assets/img/lemon.svg') }}"  alt="lemon" /></span></a>
+        </div>
+        <ul class="nav">
+            <li class="nav-item nav-profile ">
+                <a href="{{ url_for('user.user_details') }}" class="nav-link pt-2">
+                    <div class="nav-profile-image">
+                        <img src="{{ url_for('static',filename = 'assets/img/faces/face1.jpg') }}" alt="profile" />
+                        <span class="login-status online"></span>
+                        <!--change to offline or busy as needed-->
+                    </div>
+                    <div class="nav-profile-text d-flex flex-column">
+                        <span class="font-weight-medium mb-2">总资产</span>
+                        {% if user %}
+                        <span class="font-weight-normal">¥{{g.total_value}}</span>
+                        {% endif %}
+                    </div>
+                    {% if user %}
+                    <span class="badge badge-danger text-white  rounded">第{{ g.day_number }}周</span>
+                    {% endif %}
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home.index')}}">
+                    <i class="mdi mdi mdi-home-map-marker menu-icon"></i>
+                    <span class="menu-title">店铺</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('play.start')}}">
+                    <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                    <span class="menu-title">决策</span>
+                </a>
+            </li>
+          <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('play.result')}}">
+                    <i class="mdi mdi-pen menu-icon"></i>
+                    <span class="menu-title">经营数据</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('purchase.index')}}">
+                    <i class="mdi mdi-coin menu-icon"></i>
+                    <span class="menu-title">原料采购</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                  <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                  <span class="menu-title">报表</span>
+                  <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('info.report_decision') }}">决策表</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('info.report_profit') }}">利润表</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('info.report_balance') }}">资产负债表</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('info.report_cashflow') }}">现金流量表</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('info.report_sum_tables') }}">汇总表</a>
+                  </li>
+                </ul>
+              </div>
+          </li>
+        </ul>
+      </nav>
+      <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+        <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
+          <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
+            <i class="mdi mdi-menu"></i>
+          </button>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator dropdown-toggle" href="{{ url_for("intro") }}" >
+                <i class="mdi mdi-file-document"></i>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav navbar-nav-right ml-lg-auto">
+            <li class="nav-item dropdown d-none d-xl-flex border-0">
+              <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown">
+                <i class="mdi mdi-earth"></i> 中文 </a>
+              <div class="dropdown-menu navbar-dropdown" aria-labelledby="languageDropdown">
+                <a class="dropdown-item" href="#"> Chinese </a>
+              </div>
+            </li>
+            <ul class="navbar-nav">
+            <li class="nav-item nav-profile dropdown border-0">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="{{ url_for('user.user_details') }}" data-toggle="dropdown">
+                <img class="nav-profile-img mr-2" alt="" src="{{ url_for('static',filename = 'assets/img/faces/face1.jpg') }}" />
+                <span class="profile-name">{{ user }}</span>
+              </a>
+              <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
+                  {% if user %}
+                <a class="dropdown-item justify-content-center" href="{{ url_for('user.user_logout') }}">
+                  <i class="mdi mdi-logout mr-2 text-primary"></i> 退出 </a>
+                  {% else %}
+                <a class="dropdown-item justify-content-center" href="{{ url_for('user.user_login') }}">
+                  <i class="mdi mdi-cached mr-2 text-success"></i> 登录 </a>
+                  {% endif %}
+              </div>
+            </li>
+            </ul>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!--主面板-->
+        <div class="main-panel">
+          <div class="content-wrapper pb-0">
+
+                {% block body %}
+      
+                {% endblock %}
+                {% for message in get_flashed_messages() %}
+                  <script type="text/javascript">
+                    window.alert("{{ message }}");
+                  </script>
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+        </div>
+
+    <script src="{{ url_for('static',filename = 'assets/js/off-canvas.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'assets/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'assets/js/misc.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'assets/js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'bootstrap/bootstrap.4.6.min.js') }}"></script>
+
+  </body>
+</html>

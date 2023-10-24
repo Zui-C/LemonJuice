@@ -1,0 +1,87 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  资产负债表
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'css/report.css') }}">
+  <script src="{{ url_for('static',filename = 'jquery/jquery-3.6.0.min.js') }}"></script>
+
+  <script src="{{ url_for('static',filename = 'js/report_balance.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid mt-3" id="total1">
+
+
+    <div>
+      <table class="table-bordered"  width="100%" id="table1">
+        <tr class="firstHead">
+          <th rowspan="2" class="col1">周</th>
+          <th colspan="2">柠檬</th>
+          <th colspan="2">方糖</th>
+          <th colspan="2">冰块</th>
+          <th colspan="2">纸杯</th>
+          <th rowspan="2" class="col10">现金</th>
+          <th rowspan="2" class="col13">工资(待摊）</th>
+          <th rowspan="2" class="col14">租金(待摊）</th>
+          <th rowspan="2" class="col15">装修(待摊）</th>
+          <th rowspan="2" class="col16">固定资产</th>
+
+          <th rowspan="2" class="col11">资产总计</th>
+          <th rowspan="2" class="col12">股东权益</th>
+
+
+
+        </tr>
+        <tr class="twoHead">
+          <th class="col2">数量</th>
+          <th class="col3">总值</th>
+          <th class="col4">数量</th>
+          <th class="col5">总值</th>
+          <th class="col6">数量</th>
+          <th class="col7">总值</th>
+          <th class="col8">数量</th>
+          <th class="col9">总值</th>
+
+
+
+        </tr>
+      </table>
+      <div id="lowerLbl">
+        <div class="d-flex justify-content-center mt-3">
+          <div class="p-2">
+            <text id="rowsNum">共0条</text>
+          </div>
+          <div class="p-1">
+            <button type="button" class="btn btn btn-outline-dark btn-sm" onclick="last()">上一页</button>
+            <button type="button" class="btn btn btn-outline-dark btn-sm" onclick="next()" id="pno" disabled>1
+            </button>
+            <button type="button" class="btn btn btn-outline-dark btn-sm" onclick="next()">下一页</button>
+
+          </div>
+          <div class="p-1">
+            前往<input style="width: 40px; margin-inline: 3px" width="20px" type="text" id="gopg" onclick="gopage()"/>页
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div id="dataid" d="{{ data }}" style="display:none"></div>
+  <script type="text/javascript">
+      var js_data = document.getElementById('dataid').getAttribute('d');
+      load(js_data);
+  </script>
+
+{% endblock %}
+
+

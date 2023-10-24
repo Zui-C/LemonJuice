@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'bootstrap/bootstrap.4.6.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'css/init.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'css/report.css') }}">
+  <script src="{{ url_for('static',filename = 'js/admin_class_details.js') }}"></script>
+
+  {% block head %}
+  {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for("admin.search_class") }}">返回</a>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item pr-2">
+            <b>课程{{ class_name }}</b>
+          </li>
+          <li class="nav-item pr-2">
+            <b>学生数量{{ users_number }}</b>
+          </li>
+              <li class="nav-item dropdown pr-2">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+          排序方式:{{ order_name }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="../9/">累积营收</a>
+          <a class="dropdown-item" href="../8/">ROE</a>
+          <a class="dropdown-item" href="../7/">净利率</a>
+                    <a class="dropdown-item" href="../11/">毛利率</a>
+
+          <a class="dropdown-item" href="../6/">累积利润</a>
+          <a class="dropdown-item" href="../5/">现金	</a>
+          <a class="dropdown-item" href="../4/">口碑</a>
+          <a class="dropdown-item" href="../3/">当前周数</a>
+          <a class="dropdown-item" href="../10/">总ROE</a>
+          <a class="dropdown-item" href="../2/">创业次数</a>
+        </div>
+      </li>
+
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item pr-2">轮次结束日</li>
+              <form class="nav-item">
+                <input class="nav-item" type="number" name="end_day" value="{{ end_day }}">
+              <button type="submit" class="nav-item">确定</button>
+ </form>
+  </ul>
+
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+
+
+  <div class="container-fluid mt-3">
+
+
+    <div>
+      <table class="table-bordered"  width="100%" id="table1">
+
+        <tr>
+          <th class="col1" rowspan="2">昵称</th>
+          <th class="col2" rowspan="2">创业次数</th>
+          <th class="col3" rowspan="2">总ROE</th>
+
+          <th colspan="9">当前投资</th>
+
+        </tr>
+        <tr>
+
+          <th class="col3">当前周数</th>
+          <th class="col4">口碑</th>
+          <th class="col5">现金</th>
+          <th class="col6">累积利润</th>
+          <th class="col9">累积营收</th>
+          <th class="col11">毛利率</th>
+
+          <th class="col7">净利率</th>
+          <th class="col8">ROE</th>
+          <th class="col13">是否终止</th>
+
+        </tr>
+      </table>
+    </div>
+  </div>
+  </div>
+
+  <div id="dataid" d="{{ data }}" style="display:none"></div>
+  <script type="text/javascript">
+      var js_data = document.getElementById('dataid').getAttribute('d');
+      load(js_data);
+  </script>
+
+    <script src="{{ url_for('static',filename = 'jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'bootstrap/bootstrap.4.6.min.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends "admin_base.html" %}
+
+{% block title %}
+  管理员登陆
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+  <div class="row mt-4">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+              <div  class="container-fluid mt-2" style="border: 1px solid black;">
+
+      <form method="POST" action="{{ url_for('admin.admin_login') }}">
+        <div class="form-group">
+          <label for="Administrator">用户名</label>
+          <input style="background-color: #f3f3f3"  type="text" class="form-control" name="admin_name">
+        </div>
+        <div class="form-group">
+          <label for="AdministratorPassword">密码</label>
+          <input style="background-color: #f3f3f3"  type="password" class="form-control" name="admin_password">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-outline-dark btn-block">立即登陆</button>
+        </div>
+      </form>
+    </div>
+        </div>
+
+    <div class="col-sm">
+    </div>
+  </div>
+
+
+{% endblock %}

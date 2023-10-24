@@ -1,0 +1,227 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  汇总表
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static',filename = 'css/report.css') }}">
+  <script src="{{ url_for('static',filename = 'jquery/jquery-3.6.0.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid">
+    <!--netincome-->
+    <div class="row">
+      <div class="col-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">利润表</h4>
+            <div class="table-responsive">
+              <table class="table-bordered" width="100%" id="table1">
+                <tr>
+                  <th rowspan="1" colspan="2">营业收入</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_revenue) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="8" colspan="1">营业成本</th>
+                  <th rowspan="1" colspan="1">柠檬</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_lemon) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">方糖</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_sugar) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">冰块</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_ice) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">注塑杯</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_cup) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">房租（摊销）</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_rent_cost) }}</th>
+                </tr>
+
+                <tr>
+                  <th rowspan="1" colspan="1">工资（摊销）</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_wages_cost) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">设备（摊销）</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_equipment_cost) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">总计</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_total_cost) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="2">营业费用</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_oper_cost) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="2">营业外支出</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_total_waste_value) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="2">净利润</th>
+                  <th rowspan="1" colspan="1">{{ "%.1f" | format(g.sum_profit) }}</th>
+                </tr>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--balance-->
+      <div class="col-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">资产负债表</h4>
+            <div class="table-responsive">
+              <table class="table-bordered" width="100%" id="table2">
+                <tr>
+                  <th rowspan="12" colspan="1">资产</th>
+                  <th rowspan="1" colspan="2"> 现金</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.cash) }}</th>
+
+                </tr>
+
+                <tr>
+                  <th rowspan="5" colspan="1">存货</th>
+                  <th rowspan="1" colspan="1">柠檬</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.lemon_value) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">方糖</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.sugar_value) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">冰块</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.ice_value) }}</th>
+
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">注塑杯</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.cup_value) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">总计</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.sum_things) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="4" colspan="1">待摊费用</th>
+                  <th rowspan="1" colspan="1">工资</th>
+                                    <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.wages_value) }}</th>
+
+                </tr>
+                                <tr>
+                  <th rowspan="1" colspan="1">租金</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.rent_value) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">装修</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.fit_up_value) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1">总计</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.sum_things2) }}</th>
+                </tr>
+
+                <tr>
+                  <th rowspan="1" colspan="2">固定资产</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.equipment_value) }}</th>
+                </tr>
+                                <tr>
+                  <th rowspan="1" colspan="2">资产总计</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.total_value) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="3">负债</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(0) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="3">权益</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.total_value) }}</th>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!--cashflow-->
+      <div class="col-12 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">现金流量表</h4>
+            <div class="table-responsive">
+              <table class="table-bordered" width="100%" id="table3">
+                <tr>
+                  <th rowspan="6" colspan="1">经营活动产生的现金流量</th>
+                  <th rowspan="1" colspan="1"> 销售商品收到的现金</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.sum_revenue) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1"> 购买原料支出的现金</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(-g.things_cash) }}</th>
+                </tr>
+
+                <tr>
+                  <th rowspan="1" colspan="1"> 给付工资支出的现金</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(-g.wage_cash) }}</th>
+                </tr>
+
+                <tr>
+                  <th rowspan="1" colspan="1"> 给付房租支出的现金</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(-g.rent_cash) }}</th>
+                </tr>
+
+                <tr>
+                  <th rowspan="1" colspan="1"> 装修店铺支出的现金</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(-g.fit_up_cash) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1"> 经营活动产生的现金流量净额</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.sum_cash1) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="1"> 投资活动产生的现金流量</th>
+                  <th rowspan="1" colspan="1"> 购买设备支出的现金</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(-g.equipment_cash) }}</th>
+                </tr>
+
+                <tr>
+                  <th rowspan="1" colspan="1"> 筹资活动产生的现金流量</th>
+                  <th rowspan="1" colspan="1"> 初始投资获得的现金</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(70000) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="2"> 期末现金增量</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.sum_cash2) }}</th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="2"> 期初现金余额</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(0) }} </th>
+                </tr>
+                <tr>
+                  <th rowspan="1" colspan="2"> 期末现金余额</th>
+                  <th rowspan="1" colspan="1"> {{ "%.1f" | format(g.cash) }}</th>
+                </tr>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
+
+

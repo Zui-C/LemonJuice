@@ -1,0 +1,42 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  当轮结束
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="main-panel">
+  <div class="content-wrapper pb-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="card" style="position: center;margin:auto;">
+          <div class="card-body">
+            <div  class="container-fluid mt-2" >
+              <table  class="table table-borderless">
+                <tr>
+                  <td style="width: 100%;">该轮次结束</td>
+                </tr>
+                <tr>
+                  <td style="width: 100%;">
+                    <a class="btn btn-block btn-sm badage badge-inverse-primary" href="{{ url_for('info.report_decision') }}" role="button">确定</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+
+
+{% endblock %}

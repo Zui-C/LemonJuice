@@ -1,0 +1,111 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  创业记录
+{% endblock %}
+{% block head %}
+{% endblock %} 
+
+{% block body %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2 grid-margin stretch-card"></div>
+        <div class="col-lg-8 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-header" style="background-color: rgb(164, 106, 218);">
+  <b class="text-white">{{ user }}的创业纪录</b>
+</div>
+
+        <div class="card-body">
+        共有{{ g.game_number }}/{{ g.max_termination }}次记录
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                      {% for game in g.end_games %}
+
+              <tr>
+                <td colspan="2">你的第{{ game[0] }}/{{ g.max_termination }}次创业（已终止）</td>
+              </tr>
+              <tr>
+                <td>终止时间</td>
+                <td>
+                  <label>第{{ game[1] }}周</label>
+                </td>
+              </tr>
+              <tr>
+                <td>实际回报</td>
+                <td>
+                  <label>{{ "%.1f" | format(game[2]) }}</label>
+                </td>
+              </tr>
+              <tr>
+                <td>ROE</td>
+                <td>
+                  <label>{{ "%.2f" | format(game[3]) }}%</label>
+                </td>
+              </tr>
+
+        {% endfor %}
+          {% if g.on_game %}
+
+              <tr>
+                <td colspan="2">你的第{{ g.on_game[0] }}/{{ g.max_termination }}次创业（进行中）</td>
+              </tr>
+              <tr>
+                <td>进行时间</td>
+                <td>
+                  <label>第{{ g.on_game[1] }}周</label>
+                </td>
+              </tr>
+              <tr>
+                <td>累积利润</td>
+                <td>
+                  <label>{{ "%.1f" | format(g.on_game[2]) }}</label>
+                </td>
+              </tr>
+              <tr>
+                <td>ROE</td>
+                <td>
+                  <label>{{ "%.1f" | format(g.on_game[3])}}%</label>
+                </td>
+              </tr>
+
+{% endif %}
+
+              <tr>
+                <td colspan="2">合计</td>
+              </tr>
+              <tr>
+                <td>创业次数</td>
+                <td>
+                  <label>{{ g.game_number }}/{{ g.max_termination }}次</label>
+                </td>
+              </tr>
+              <tr>
+                <td>实际回报</td>
+                <td>
+                  <label>{{ "%.1f" | format(g.sum_profit) }}</label>
+                </td>
+              </tr>
+              <tr>
+                <td>ROE</td>
+                <td>
+                  <label>{{ "%.2f" | format(g.roe) }}%</label>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+        {% if g.game_number < g.max_termination and not g.on_game and g.end_day + 1 > g.day_number %}
+        <a class="btn btn-block mt-3 badge badge-inverse-danger" href="{{ url_for('play.restart') }}" role="button"
+           style="font-size: large;">新投资</a>
+        {% endif %}
+        </div>
+            </div>
+        </div>
+        <div class="col-lg-2 grid-margin stretch-card"></div>
+    </div>
+  </div>
+
+{% endblock %}

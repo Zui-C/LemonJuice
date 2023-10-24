@@ -1,0 +1,391 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  决策
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+  <style>
+
+      tr {
+          margin: 0px;
+      }
+
+      td, th {
+          text-align: center;
+      }
+
+      td.col1, th.col1 {
+          width: 50%;
+      }
+
+      td.col2, th.col2 {
+          width: 50%;
+      }
+  </style>
+  <!--start four things-->
+  <div class="row">
+
+      <!--现金、总资产-->
+      <div class="col-xl-4 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+        <div class="card bg-danger">
+          <div class="card-body px-3 py-4">
+            <table class="table-borderless container-fluid" style="height: 100%">
+              <tr style="height: 50%">
+                <td>
+                  <div class=" color-card">
+                    <h3 class="mb-0 color-card-head" style="color: #f3f3f3;">现金</h3>
+                    <h3 class="text-white">￥{{g.resource[4]}}</h3>
+                  </div>
+                </td>
+                <td>
+                  <div class=" color-card">
+                    <h3 class="mb-0 color-card-head" style="color: #f3f3f3;">累积利润</h3>
+                    <h3 class="text-white">￥{{ "%.1f" | format(g.profit_sum)  }}</h3>
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 50%">
+                <td>
+                  <div class=" color-card">
+                    <h3 class="mb-0 color-card-head" style="color: #f3f3f3;">累积营收</h3>
+                    <h3 class="text-white">￥{{g.revenue_sum}}</h3>
+                  </div>
+                </td>
+                <td>
+                  <div class=" color-card">
+                    <h3 class="mb-0 color-card-head" style="color: #f3f3f3;">口碑</h3>
+                    <h3 class="text-white">{{ "%.2f" | format(g.popularity*100) }}%</h3>
+                  </div>
+                </td>
+              </tr>
+
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!--时间轴等-->
+      <div class="col-xl-2 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 d-flex flex-column justify-content-around  text-center">
+        <h3 class="mb-0">第{{ g.day_number }}周</h3>
+        <a class="btn btn-block  badge badge-inverse-danger" href="{{ url_for('play.open_check') }}" role="button"
+           style="font-size: large;">营业</a>
+        <a class="btn btn-block badge badge-inverse-success" href="{{ url_for('play.result') }}" role="button"
+           style="font-size: large;">昨日结果</a>
+        <a class="btn btn-block badge badge-inverse-info" href="{{ url_for('play.end_by_close') }}" role="button"
+           style="font-size: large;">公司解散</a>
+      </div>
+
+      <!--柠檬、冰块-->
+      <div class="col-xl-3 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+        <div class="d-flex flex-column flex-fill">
+          <div class="card bg-warning">
+            <div class="card-body px-3 py-4">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="color-card">
+                  <p class="mb-0 color-card-head" style="color: #f3f3f3;">柠檬</p>
+                  <h2 class="text-white"> {{ g.resource[0] }}
+                  </h2>
+                </div>
+                <i class="card-icon-indicator ">
+                  <span><img width="100%" height="100%" src="{{ url_for('static',filename = 'assets/img/lemon.svg') }}"
+                             alt="lemon"></span>
+                </i>
+
+              </div>
+            </div>
+          </div>
+          <div class="card bg-info">
+            <div class="card-body px-3 py-4">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="color-card">
+                  <p class="mb-0 color-card-head" style="color: #f3f3f3;">冰块</p>
+                  <h2 class="text-white"> {{ g.resource[2] }}
+                  </h2>
+                </div>
+                <i class="card-icon-indicator mdi mdi-cube-outline bg-inverse-icon-info"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--方糖、注塑杯-->
+      <div class="col-xl-3 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+        <div class="d-flex flex-column flex-fill">
+          <div class="card bg-success">
+            <div class="card-body px-3 py-4">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="color-card">
+                  <p class="mb-0 color-card-head" style="color: #f3f3f3;">方糖</p>
+                  <h2 class="text-white"> {{ g.resource[1] }}
+                  </h2>
+                </div>
+                <i class="card-icon-indicator mdi mdi-crop-square bg-inverse-icon-success"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-primary">
+            <div class="card-body px-3 py-4">
+              <div class="d-flex justify-content-between align-items-start">
+                <div class="color-card">
+                  <p class="mb-0 color-card-head" style="color: #f3f3f3;">注塑杯</p>
+                  <h2 class="text-white"> {{ g.resource[3] }}
+                  </h2>
+                </div>
+                <i class="card-icon-indicator mdi mdi-cup bg-inverse-icon-info"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  <!--end four things-->
+  <div class="row">
+    <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>监控信息</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="col1" style="font-size: large;"><b>种类</b></th>
+                <th class="col2" style="font-size: large;"><b>状态</b></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>平均温度</td>
+                <td>
+                  <label>{{ g.temperature }}℃</label>
+                </td>
+              </tr>
+              <tr>
+                <td>本周基本天气</td>
+                <td>
+                  <label>{{ g.weather }}</label>
+                </td>
+              </tr>
+                         <tr>
+                <td>工资/租金给付</td>
+                <td>
+                  <label>剩{{ g.home_pay_day }}周</label>
+                </td>
+              </tr>
+                            <tr>
+                <td>本轮结束</td>
+                <td>
+                  <label>第{{ g.end_day }}周</label>
+                </td>
+              </tr>
+              <tr>
+                <td>可供应杯数</td>
+                <td>
+                  <label>{{ g.max_supply_people }}杯</label>
+                </td>
+              </tr>
+                            <tr>
+                <td colspan="2">你的第{{ 1 }}/3次创业</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          {% if g.home_pay_day ==0 %}
+                    <div class="alert alert-danger mt-3 text-center" role="alert">
+  要付工资/租金了!
+</div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>当前配方</b></h4>
+          <div class="table-responsive">
+            <form method="POST" action="{{ url_for('recipe.recipe') }}">
+
+              <table class="table">
+                <thead>
+                <tr>
+                  <th class="col1" style="font-size: large;"><b>种类</b></th>
+                  <th class="col2" style="font-size: large;"><b>状态</b></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>单杯柠檬数量</td>
+                  <td>
+                    <input type="number" class="form-control-sm" name="lemon_per_cup" value="{{ g.recipe[0] }}" min="1" max="99" placeholder="单杯柠檬数量 [1,99]且为正整数">
+                  </td>
+                </tr>
+                <tr>
+                  <td>单杯方糖数量</td>
+                  <td>
+                    <input type="number" class="form-control-sm" name="sugar_per_cup" value="{{ g.recipe[1] }}" min="0" max="99" placeholder="单杯方糖数量 [0,99]且为正整数">
+                  </td>
+                </tr>
+                <tr>
+                  <td>单杯冰块数量</td>
+                  <td>
+                    <input type="number" class="form-control-sm" name="ice_per_cup" value="{{ g.recipe[2] }}" min="0" max="99" placeholder="单杯冰块数量 [0,99]且为正整数">
+                  </td>
+                </tr>
+                <tr>
+                  <td>单杯价格</td>
+                  <td>
+                    <input type="number" class="form-control-sm" name="price_per_cup" value="{{ g.recipe[3] }}" min="1" max="99" placeholder="单杯价格 [1,99]且为正整数">
+                  </td>
+                </tr>
+                <tr>
+                  <td>预估单杯成本</td>
+                  <td>
+                    <label>¥{{ g.cost }}</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <button type="submit" class="btn btn-primary btn-block btn-sm" style="color:#f3f3f3;">
+                      确定
+                    </button>
+
+                  </td>
+
+                </tr>
+                </tbody>
+              </table>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>当日原料支出</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th style="font-size: large;"><b>物品</b></th>
+                <th style="font-size: large;"><b>数量</b></th>
+                <th style="font-size: large;"><b>价格</b></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>柠檬</td>
+                <td>
+                  <label>{{ g.daily_purchase[0] }}</label>
+                </td>
+                <td>
+                  <label>¥{{ g.daily_purchase[1] }}</label>
+                </td>
+                <td>
+                  <a class="btn btn-outline-dark btn-sm badge badge-warning" href="{{ url_for('purchase.index') }}"
+                     style="color: #f3f3f3;"
+                     role="button">购买</a></td>
+              </tr>
+              <tr>
+                <td>方糖</td>
+                <td>
+                  <label>{{ g.daily_purchase[2] }}</label>
+                </td>
+                <td>
+                  <label>¥{{ g.daily_purchase[3] }}</label>
+                </td>
+                <td><a class="btn btn-outline-dark btn-sm badge badge-success" href="{{ url_for('purchase.index') }}"
+                       style="color: #f3f3f3;"
+                       role="button">购买</a></td>
+              </tr>
+              <tr>
+                <td>冰块</td>
+                <td>
+                  <label>{{ g.daily_purchase[4] }}</label>
+                </td>
+                <td>
+                  <label>¥{{ g.daily_purchase[5] }}</label>
+                </td>
+                <td><a class="btn btn-outline-dark btn-sm badge badge-info" href="{{ url_for('purchase.index') }}"
+                       style="color: #f3f3f3;"
+                       role="button">购买</a></td>
+              </tr>
+              <tr>
+                <td>注塑杯</td>
+                <td>
+                  <label>{{ g.daily_purchase[6] }}</label>
+                </td>
+                <td>
+                  <label>¥{{ g.daily_purchase[7] }}</label>
+                </td>
+                <td><a class="btn btn-outline-dark btn-sm badge badge-primary" href="{{ url_for('purchase.index') }}"
+                       style="color: #f3f3f3;"
+                       role="button">购买</a></td>
+              </tr>
+
+              <tr>
+                <td>总计</td>
+                <td colspan="3">
+                  <label class="btn" style="width: fit-content;">¥{{ g.daily_purchase[8] }}</label>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>你的店面</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                 <td>店面类型</td>
+                <td>{{g.data[0]}}</td>
+              </tr>
+              <tr>
+                <td>设备残值</td>
+                <td>￥{{g.data[1]}}</td>
+              </tr>
+              <tr>
+                <td>（装修）待摊费用</td>
+                <td>￥{{g.data[2]}}</td>
+              </tr>
+                            <tr>
+                <td>租金</td>
+                <td>￥{{g.data[3]}}</td>
+              </tr>
+                            <tr>
+                <td>工资</td>
+                <td>￥{{g.data[4]}}</td>
+              </tr>
+            </table>
+          </div>
+          <a class="btn btn-primary btn-block btn-sm mt-4" href="{{ url_for('home.index') }}" role="button"
+           style="font-size: large;">查看</a>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+{% endblock %}

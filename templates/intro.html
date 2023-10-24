@@ -1,0 +1,159 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  介绍
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+  <!--start four things-->
+  <div class="row">
+
+      <!--现金、总资产-->
+    <div class="col-lg-5 col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>初始决策</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th ><b>好的初始店铺选择是成功的一半！</b></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>如果你想体验被现金流束缚的高投入与"高回报"，</td>
+              </tr>
+              <tr>
+                <td>请选择商场连锁店开始经营。</td>
+              </tr>
+              <tr>
+                <td>如果你想挑战难以盈利回本的困难，</td>
+              </tr>
+              <tr>
+                <td>请选择大众连锁店开始经营。</td>
+              </tr>
+              <tr>
+                <td>如果你想简单摸摸鱼，</td>
+              </tr>
+              <tr>
+                <td>请选择流动餐车吧。</td>
+              </tr>
+              <tr>
+                <td><b>请注意：店铺选择没有更换一说。</b></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!--时间轴等-->
+      <div class="col-lg-2 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 d-flex flex-column justify-content-around  text-center">
+        <h1 class="mb-0">介绍</h1>
+        <a class="btn btn-block  badge badge-inverse-danger" href="{{ url_for('home.index') }}" role="button"
+           style="font-size: large;">开始</a>
+      </div>
+
+    <div class="col-lg-5 col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>每日操作</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+
+              <tbody>
+              <tr>
+                <td>1.查看本周天气及温度，调整配方并估算客流。</td>
+              </tr>
+              <tr>
+                <td>2.查看工资与租金给付情况，预留足够现金。</td>
+              </tr>
+              <tr>
+                <td>3.根据预估客流购买原料并结合现金流制定价格策略。</td>
+              </tr>
+              <tr>
+                <td>4.开始营业，查看好评率及口碑情况。</td>
+
+              </tr>
+              <tr>
+                <td>5.根据经营指标及原料使用情况及时调整策略。</td>
+              </tr>
+              <tr>
+                <td>6.定期查看决策表、汇总表及经营曲线，调整整体策略。</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  <!--end four things-->
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="font-size: larger;"><b>基本设定</b></h4>
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+              <tr>
+                <td>初始资金：你获得了七万元的资金，这是你目前和未来的唯一的外部投资。</td>
+              </tr>
+
+              <tr>
+                <td>时间轴：1年=12月=48周，正式模拟中的完整周期为48周，这也是折旧与店铺租赁的期限。</td>
+              </tr>
+              <tr>
+                <td>温度与天气：天气对当期客流有明显影响，温度对顾客的口味偏好及当期客流均有影响，天气的起始月份为6月。</td>
+              </tr>
+              <tr>
+                <td>配方：顾客们十分注意真材实料，酸甜的口感也是他们所热爱的，同时也请给予适量的冰块。</td>
+              </tr>
+              <tr>
+                <td>好评率：配方及价格对好评率均有重要影响，供应不足也会导致好评率下降。</td>
+              </tr>
+              <tr>
+                <td>口碑：口碑是当期客流的决定性因素，口碑由好评率积累而来，请珍惜新店开张时20%的初始客流。</td>
+              </tr>
+              <tr>
+                <td>原材料损失：食品健康非常重要，店铺会被动处理本周未用完的冰块及10%不新鲜的柠檬。</td>
+              </tr>
+              <tr>
+                <td>创业记录：点击头像可以查看你的创业记录，请注意，你总共拥有三次被投资机会，被收购则立即结束，好好把握！</td>
+              </tr>
+              <tr>
+                <td>评价：我们主要以全部记录的总ROE来进行评价，多次破产或主动解散并不是好事。</td>
+              </tr>
+              <tr>
+                <td>公司终止：在模拟中有三种方式终止公司，因无法支付工资破产，或主动解散，以及达到周期后被收购。</td>
+              </tr>
+              <tr>
+                <td>公司破产：流动性十分重要，我们会在交租付薪的营业时对其优先结算，请注意预留资金。同时破产时处置资产会带来50%的损失。</td>
+              </tr>
+              <tr>
+                <td>公司解散：当你的店铺口碑过低，营收及利润不足以支持运营时你可以进行主动破产。同样，解散时处置资产也会带来50%的损失。</td>
+              </tr>
+              <tr>
+                <td>收购：我们默认在周期结束后一天，你的公司将以资产价值被收购，请注意，店铺的口碑会带来一定的溢价或折价。</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+{% endblock %}

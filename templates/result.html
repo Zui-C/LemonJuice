@@ -1,0 +1,350 @@
+{% extends "new_base.html" %}
+
+{% block title %}
+  决策
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename = 'css/report.css') }}">
+<script src="{{ url_for('static',filename = 'jquery/jquery-3.6.0.min.js') }}"></script>
+
+<script src="{{ url_for('static',filename = 'js/line_chart.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+  <style>
+
+      tr {
+          margin: 0px;
+      }
+
+      td, th {
+          text-align: center;
+      }
+      .card1{
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: 600px;
+        min-width: 400px;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid #e6e6e6;
+        border-radius: 3px;
+      }
+  </style>
+
+<div class="container-fluid">
+    {% if g.day_number > 1 %}
+    <div class="row">
+    <!--经营小结-->
+      <div class="col-lg-4 col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">第{{ g.day_number - 1 }}周小结</h4>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td>购买人数</td>
+                  <td>{{ g.purchase_people }}</td>
+                  {% if g.purchase_people_change < 0 %}
+                  <td class="text-success"> {{ g.purchase_people_change }} <i class="mdi mdi-arrow-down"></i></td>
+                  {% else %}
+                  <td class="text-danger"> {{ g.purchase_people_change }} <i class="mdi mdi-arrow-up"></i></td>
+                  {% endif %}
+                </tr>
+                <tr>
+                  <td>好评率</td>
+                  <td>{{ "%.2f" | format(g.satisfaction*100) }}%</td>
+                  {% if g.satisfaction_change < 0 %}
+                  <td class="text-success"> {{ "%.2f" | format(g.satisfaction_change*100) }}% <i class="mdi mdi-arrow-down"></i></td>
+                  {% else %}
+                  <td class="text-danger"> {{ "%.2f" | format(g.satisfaction_change*100) }}% <i class="mdi mdi-arrow-up"></i></td>
+                  {% endif %}
+                </tr>
+                <tr>
+                  <td>口碑</td>
+                  <td>{{ "%.2f" | format(g.popularity*100) }}%</td>
+                  {% if g.popularity_change < 0 %}
+                  <td class="text-success"> {{ "%.2f" | format(g.popularity_change*100) }}% <i class="mdi mdi-arrow-down"></i></td>
+                  {% else %}
+                  <td class="text-danger"> {{ "%.2f" | format(g.popularity_change*100) }}%<i class="mdi mdi-arrow-up"></i></td>
+                  {% endif %}
+                </tr>
+          {% if g.message %}
+
+<tr>
+  <td colspan="3" class="justify-content-center p-0">--"{{ g.message }}"</td>
+                </tr>
+          {% endif %}
+              </tbody>
+            </table>
+          </div>
+
+        <a class="btn btn-block mt-3 badge badge-inverse-success" href="{{ url_for('play.start') }}" role="button"
+           style="font-size: large;">返回</a>
+        </div>
+
+      </div>
+      </div>
+    <!--经营小结end-->
+    <!--经营指标-->
+      <div class="col-lg-4 col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">经营指标</h4>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td>营业成本</td>
+                  <td> ¥{{ g.total_cost }}</td>
+                  {% if g.total_cost_change < 0 %}
+                  <td class="text-success"> ¥{{ g.total_cost_change }} <i class="mdi mdi-arrow-down"></i></td>
+                  {% else %}
+                  <td class="text-danger"> ¥{{ g.total_cost_change }} <i class="mdi mdi-arrow-up"></i></td>
+                  {% endif %}
+                </tr>
+                <tr>
+                  <td>管理费用</td>
+                  <td>¥{{ g.oper_cost }}</td>
+                  {% if  g.oper_cost_change < 0 %}
+                  <td class="text-success"> ¥{{ g.oper_cost_change }} <i class="mdi mdi-arrow-down"></i></td>
+                  {% else %}
+                  <td class="text-danger"> ¥{{ g.oper_cost_change }} <i class="mdi mdi-arrow-up"></i></td>
+                  {% endif %}
+                </tr>
+                <tr>
+                  <td>营业外支出</td>
+                  <td>¥{{ g.total_waste_value }}</td>
+                  {% if  g.total_waste_value_change < 0 %}
+                  <td class="text-success"> ¥{{ g.total_waste_value_change }} <i class="mdi mdi-arrow-down"></i></td>
+                  {% else %}
+                  <td class="text-danger"> ¥{{ g.total_waste_value_change }} <i class="mdi mdi-arrow-up"></i></td>
+                  {% endif %}
+                </tr>
+                <tr>
+                  <td>营业收入</td>
+                  <td> ¥{{ g.revenue }}</td>
+                  {% if g.revenue_change < 0 %}
+                  <td class="text-success"> ¥{{ g.revenue_change }} <i class="mdi mdi-arrow-down"></i></td>
+                  {% else %}
+                  <td class="text-danger"> ¥{{ g.revenue_change }} <i class="mdi mdi-arrow-up"></i></td>
+                  {% endif %}
+                </tr>
+                <tr>
+                  <td>本周利润</td>
+                  <td> ¥{{ g.profit }}</td>
+                  {% if g.profit_change < 0 %}
+                  <td class="text-success"> ¥{{g.profit_change}} <i class="mdi mdi-arrow-down"></i></td>
+                  {% else %}
+                  <td class="text-danger"> ¥{{g.profit_change}} <i class="mdi mdi-arrow-up"></i></td>
+                  {% endif %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+    <!--经营指标end-->
+    <!--原料实际使用数量-->
+      <div class="col-lg-4 col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">原料实际使用数量</h4>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <tbody>
+              <tr>
+                <th style="width: 33%"></th>
+                <th style="width: 33%">使用</th>
+                <th style="width: 33%">损耗</th>
+              </tr>
+                <tr>
+                  <td style="width: 33%">柠檬</td>
+                  <td style="width: 33%">{{ g.use[0] }}</td>
+                  <td style="width: 33%" >{{ g.lemon_waste }}</td>
+                </tr>
+                <tr>
+                  <td style="width: 33%">方糖</td>
+                  <td style="width: 33%">{{ g.use[1] }}</td>
+                  <td style="width: 33%" >0</td>
+                </tr>
+                <tr>
+                  <td style="width: 33%">冰块</td>
+                  <td style="width: 33%">{{ g.use[2] }}</td>
+                  <td style="width: 33%" >{{ g.ice_waste }}</td>
+                </tr>
+                <tr>
+                  <td style="width: 33%">注塑杯</td>
+                  <td style="width: 33%">{{ g.use[3] }}</td>
+                  <td style="width: 33%" >0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+    <!--原料实际使用数量end-->
+    </div>
+    <!--日累计利润和累计营收图-->
+    <div class="row">
+
+      <div class="col-xl-12 col-lg-12 grid-margin grid-margin-sm-0 pb-sm-3">
+          <div class="card1">
+              <div id="container2" style="height: 100%"></div>
+                <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+                <div id="dataid3" d="{{ line3 }}" style="display:none"></div>
+                <div id="dataid4" d="{{ line4 }}" style="display:none"></div>
+                <div id="dataid5" d="{{ line5 }}" style="display:none"></div>
+                <div id="dataid6" d="{{ line6 }}" style="display:none"></div>
+                <div id="dataid7" d="{{ dayline }}" style="display:none"></div>
+                <script type="text/javascript">
+                  var dom = document.getElementById('container2');
+                  var line_profit = document.getElementById('dataid3').getAttribute('d');
+                  var line_revenue = document.getElementById('dataid4').getAttribute('d');
+                  var line_s = document.getElementById('dataid5').getAttribute('d');
+                  var line_p = document.getElementById('dataid6').getAttribute('d');
+                  var dayline = document.getElementById('dataid7').getAttribute('d');
+                  var line3 = eval(line_profit);
+                  console.log(line3);
+                  var line4 = eval(line_revenue);
+                  console.log(line4);
+                  var line5 = eval(line_s);
+                  console.log(line5);
+                  var line6 = eval(line_p);
+                  console.log(line6);
+                  var line7 = eval(dayline);
+                  console.log(line7);
+                  function calMax(line6){
+                    var max = line6[0]
+                    for (var i=1; i<line6.length;i++){
+                      if (max < line6[i]){
+                        max = line6[i]
+                      }
+                    }
+                    var maxint = Math.ceil(max / 10)
+                    var maxval = maxint * 10
+                    return maxval
+                  }
+                  function calMin(line3){
+                    var min = line3[0]
+                    for (var i=1; i<line3.length;i++){
+                      if (min > line3[i]){
+                        min = line3[i]
+                      }
+                    }
+                    var minint = Math.ceil(min / 10)
+                    var minval = minint * 10
+                    return minval
+                  }
+                  var max3= calMax(line3)
+                  var max3= calMax(line3)
+                  var max4= calMax(line4)
+                  var max5= calMax(line5)
+                  var max6= calMax(line6)
+                  var min3 = calMin(line3)
+                  var min4 = calMin(line4)
+                  var min5 = calMin(line5)
+                  var min6 = calMin(line6)
+                  var interval1 = Math.max(max4,max3,1000) - Math.min(min3,min4,0)
+                  var interval2 = Math.max(max5,max6,20) - Math.min(min5,min6,0)
+                  var myChart = echarts.init(dom, null, {
+                    renderer: 'canvas',
+                    useDirtyRect: false
+                  });
+                  var app = {};  
+                  option = {
+                  tooltip: {
+                    trigger: 'axis'
+                  },
+                  legend: {},
+                  toolbox: {
+                    show: true,
+                    feature: {
+                      dataZoom: {
+                        yAxisIndex: 'none'
+                      },
+                      magicType: { type: ['line'] },
+                      restore: {},
+                      saveAsImage: {}
+                    }
+                  },
+                  xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: line7
+                  },
+                  yAxis: [{
+                    type: 'value',
+                    min: Math.min(min3,min4,0),
+                    max: Math.max(max4,max3,1000),
+                    interval: interval1 / 5,
+                    axisLabel: {
+                      formatter: '￥{value}'
+                    }
+                  },{
+                    type: 'value',
+                    min: Math.min(min5,min6,0),
+                    max: Math.max(max5,max6,20),
+                    interval: interval2 / 5,
+                    axisLabel: {
+                      formatter: '{value}%',
+                    }
+                  }],
+                  series: [
+                  {
+                    name: '累计利润',
+                    type: 'line',
+                    data: line3,
+                    yAxisIndex: 0,
+                    smooth: true,
+                  },
+                  {
+                    name: '累计营收',
+                    type: 'line',
+                    data: line4,
+                    yAxisIndex: 0,
+                    smooth: true,
+                  },
+                  {
+                    name: '好评率',
+                    type: 'line',
+                    data: line5,
+                    yAxisIndex: 1,
+                    smooth: true,
+                  },
+                  {
+                    name: '口碑',
+                    type: 'line',
+                    data: line6,
+                    yAxisIndex: 1,
+                    smooth: true,
+                  }]
+                  }
+                  
+
+                  if (option && typeof option === 'object') {
+                    myChart.setOption(option);
+                  };
+                  
+                  window.onresize = myChart.resize;
+                </script>
+          </div>
+    </div>
+    </div>   
+    <!--日累计利润和累计营收图end-->
+    {% endif %}
+</div>
+
+
+{% endblock %}
