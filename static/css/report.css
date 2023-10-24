@@ -1,0 +1,94 @@
+
+/*多选（模板名称……）*/
+.sel
+{
+    color: darkslategrey;
+    padding-left: 10px;
+    padding-top: 5px;
+    height: 35px;
+    width: 140px;
+    background-color: #F0F2F5;
+    border-radius: 5px 0px 0px 5px;
+    border: 1px solid lightgrey;
+}
+/*多选之后的那个输入框*/
+.inp
+{
+    margin-left: -8px;
+    padding-left: 10px;
+    padding-top: 5px;
+    height: 27px;
+    width: 180px;
+    border: 1px solid lightgrey;
+    margin-bottom: 15px;
+}
+/*那个蓝色的Q*/
+#qstnMark
+{
+    height: 36px;
+    width: 55px;
+    display: inline-block;
+    background-color: #5899ce;
+    color: white;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    margin-left: -8px;
+    border-radius: 0px 5px 5px 0px;
+    border: 1px solid lightgrey;
+    text-align: center;
+    font-family: 'Calibri Light';
+    font-weight: lighter;
+}
+
+
+
+td,
+th {
+text-align: center;
+
+}
+
+tr {
+height: 48px;
+}
+
+.twoHead th {
+height: 48px;
+font-size: 14px;
+}
+.firstHead th {
+font-size: 14px;
+}
+
+
+
+/*第一列格式*/
+.col1
+{
+    width: auto;
+}
+/*第二列格式*/
+.col2
+{
+    width: auto;
+}
+
+
+
+
+/*第一张表中最下面的表格导航中的p的格式*/
+#lowerLbl p
+{
+    color: gray;
+    display: inline;
+}
+#lowerLbl select
+{
+    color: gray;
+    height: 25px;
+    width: 80px;
+    border-radius: 5px;
+    padding-left: 5px;
+    margin-left: 5px;
+}
+
